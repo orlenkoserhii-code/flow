@@ -8,22 +8,23 @@ on:
         default: dist
         type: string
     outputs:
-      description: result
-      value: ${{ jobs.deploy.outcome }}
+      result:
+        description: result
+        value: ${{ jobs.deploy.outcome }}
 jobs:
   deploy:
   outputs:
     outcome: ${{ steps.step-result.outputs.step-result }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/download-artifact@v8
-        with:
-          name: ${{ inputs.artifact-name }}
-      - name: List files
-        run: ls
-      - name: Output information
-        run: echo "Deploy"
-      - name: Set out
-        id: step-result
-        run: echo "::set-output name=step-result::success"
+  runs-on: ubuntu-latest
+  steps:
+    - name: Get code
+      uses: actions/download-artifact@v8
+      with:
+        name: ${{ inputs.artifact-name }}
+    - name: List files
+      run: ls
+    - name: Output information
+      run: echo "Deploy"
+    - name: Set out
+      id: step-result
+      run: echo "::set-output name=step-result::success"
