@@ -69,6 +69,7 @@ jobs:
     with:
       artifact-name: dist-files
   print-deploy-res:
+    needs: deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print status
