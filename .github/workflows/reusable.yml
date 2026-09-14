@@ -7,13 +7,13 @@ on:
         required: true
         default: dist
         type: string
-      outputs:
-        description: result
-        value: ${{ jobs.deploy.outcome }}
+    outputs:
+      description: result
+      value: ${{ jobs.deploy.outcome }}
 jobs:
   deploy:
   outputs:
-    outcome: ${{ steps.step-result.output.step-result }}
+    outcome: ${{ steps.step-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
